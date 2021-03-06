@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ teachers|length }} Titles</p>
+    <ul class="chooselist">
+        {% for stu in students %}
+        <li>{{ stu.id }}
+            <span class="float-right">
+                <input type="checkbox" name="choose" value="111"><br>
+            </span>
+            <span class="float-right">
+                <a class="detail" href="https://cs.shu.edu.cn/szdw/jsxx.htm" target="_blank" title="Click for more details">详情</a>
+            </span>
+        </li><br>
+        <span class="float-right">
+                <a class="detail" href="https://cs.shu.edu.cn/szdw/jsxx.htm" target="_blank" title="Click for more details">选择</a>
+        </span><br>
+        {% endfor %}
+    </ul>
+{% endblock %}

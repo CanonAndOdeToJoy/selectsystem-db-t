@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>{{ teachers|length }} Titles</p>
+    <ul class="stuhome">
+        你的学生：
+        {% for stu in students %}
+        {{ stu.sid }}
+        {% endfor %}
+    </ul>
+{% endblock %}
