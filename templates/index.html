@@ -3,15 +3,21 @@
 {% block content %}
     <p>{{ teachers|length }} Titles</p>
     <ul class="chooselist">
+        第一志愿<br>
         {% for stu in students %}
         <li>{{ stu.id }}
             <span class="float-right">
                 <a class="detail" href="https://cs.shu.edu.cn/szdw/jsxx.htm" target="_blank" title="Click for more details">详情</a>
             </span>
         </li>
-        {% endfor %}<br>
-        <span class="float-right">
-                <button class="detail" target="_blank" title="Click for more details">选择</button>
-        </span><br>
+        {% endfor %}
+        第二志愿<br>
+        {% for stu1 in students1 %}
+        <li>{{ stu1.id }}
+            <span class="float-right">
+                <a class="detail" href="https://cs.shu.edu.cn/szdw/jsxx.htm" target="_blank" title="Click for more details">详情</a>
+            </span>
+        </li>
+        {% endfor %}
     </ul>
 {% endblock %}
