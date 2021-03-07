@@ -16,8 +16,9 @@
     </h2>
     <nav>
         <ul>
-            <li><a href="{{ url_for('stuhome') }}">我的</a></li>
-            <li><a href="{{ url_for('index') }}">选择学生</a></li>
+            <li><a href="{{ url_for('thome') }}">我的</a></li>
+            <li><a href="{{ url_for('index') }}">学生列表</a></li>
+            <li><a href="{{ url_for('tchoice') }}">添加学生</a></li>
         </ul>
     </nav>
     {% block content %}{% endblock %}
