@@ -107,7 +107,7 @@ def tchoice():
         if studentinf.name != name:
             flash('Invalid input')
         else:
-            studentchoice = Schoice.query.filter_by(id='18120001')
+            studentchoice = Schoice.query.filter_by(id=sid).first()
             if studentchoice.firstchoice == '12001':
                 f = Final.query.filter_by(sid=sid).first()
                 f.tid = '12001'
@@ -115,7 +115,7 @@ def tchoice():
                 tchoice.tid = '12001'
                 tchoice.isfirst = 1
                 db.session.commit()
-            elif studentchoice.second =='12001':
+            elif studentchoice.secondchoice =='12001':
                 tchoice = Tchoice.query.filter_by(sid=sid).first()
                 tchoice.tid = '12001'
                 tchoice.isfirst = 0
