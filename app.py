@@ -117,7 +117,7 @@ def load_user(teacher_tid):
 @app.context_processor
 def inject_user():
     if not current_user.is_authenticated:
-        teacher = Teacher.query.first()
+        teacher = []
     else:
         teacher = Teacher.query.filter_by(tid=current_user.tid).first()# 要改
     return dict(teacher=teacher)
@@ -141,7 +141,7 @@ def tlogin():
         tpassword = request.form['password']
         if not tid or not tpassword:
             flash('Invalid input')
-            return redirect0(url_for('tlogin'))
+            return redirect(url_for('tlogin'))
 
         teacher = Teacher.query.filter_by(tid=tid).first()
         if tid == teacher.tid and teacher.validate_password(tpassword):
@@ -151,6 +151,13 @@ def tlogin():
         flash('Invalid username or password.')
         return redirect(url_for('tlogin'))
     return render_template('tlogin.html')
+
+
+@app.route('/s/inf/<sid>')
+@login_required
+def sidinf(sid):
+    student = Studentinf.query.filter_by(sid=sid).first()
+    return render_template('sinf.html', student=student)
 
 
 @app.route('/logout')
@@ -163,7 +170,7 @@ def logout():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    stu = Student.query.first()
+    stu = []
     return render_template('404.html'), 404
 
 
@@ -171,7 +178,8 @@ def page_not_found(e):
 @login_required
 def thome():
     stu = Final.query.filter_by(tid=current_user.tid).all()
-    return render_template('thome.html', students=stu)
+    teacher_inf = Teacherinf.query.filter_by(tid=current_user.tid).first()
+    return render_template('thome.html', students=stu, teacher=teacher_inf)
 
 
 @app.route('/tchoice', methods=['GET', 'POST'])
@@ -219,6 +227,6 @@ def tchoice():
                 tchoice.isfirst = 0
                 db.session.commit()
         return redirect(url_for('tchoice'))# 是否要去掉
-    stu = Student.query.first()
+    stu = Student.query.filter_by(tid=current_user.tid).first()
     tea = Teacher.query.all()
     return render_template('tchoice.html', teachers=tea)

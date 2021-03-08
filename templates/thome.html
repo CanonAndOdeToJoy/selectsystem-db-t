@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <p>{{ teachers|length }} Titles</p>
+    <p>姓名：{{ teacher.name }} </p>
+    <p>工号：{{ teacher.tid }} </p>
+    <p>职称：{{ teacher.title }} </p>
+    <p>自我介绍：{{ teacher.introduce }} </p>
+    <p>办公室地址：{{ teacher.address }} </p>
+    <p>邮箱：{{ teacher.email }} </p>
     <ul class="stuhome">
         你的学生：
         {% for stu in students %}
